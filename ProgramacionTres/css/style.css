@@ -1,14 +1,166 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 body {
-  background-color: #000;
+  position: relative;
+  background: rgb(233, 232, 232);
+  line-height: 1.2;
+  font-size: 18px;
+  margin: 0;
+  padding: 0;
 }
 
 main {
-  padding: 20px;
+    padding: 20px;
+    margin-bottom: 0;
+}
+
+header {
+    width: 100%;
+    position: fixed;
+    background-color:rgb(113,45,249);
+    top: 0;
+    padding: 1.5rem;
+    height: 5.6rem;
+    box-shadow: 2px 2px 6px #999;
+    font-weight: bold;
+    font-size: 20px;
+    z-index: 100;
+}
+
+.header__init {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    color: white;
+}
+
+.header__icon-link {
+    color: white;
+    text-decoration: none;
+}
+
+.header__nav {
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.header__menu {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+
+.header__menu-option {
+    display: inline-block;
+    position: relative;
+    color: white;   
+    text-decoration: none;
+}
+
+.header__menu-link {
+    padding: 0.5rem 0.8rem;
+    border-radius: 25px;
+    transition: background .3s ease-in-out;
+    color: white;
+    text-decoration: none;
+    font-family: var(--letra-global);
+}
+
+.header__menu-link:hover {
+    color: rgb(113,45,249);
+    background-color: white;   
+}
+
+.checkbtn {
+    font-size: 30px;
+    color: white;
+    float: right;
+    align-items: center;
+    cursor: pointer;
+    justify-items: center;
+    justify-content: center;
+    margin-top: 3vh;
+    display: none;
+
+}
+
+#check {
+    display: none;
+}
+
+.carrusel-banner {
+    margin-top: 12vh;
+}
+
+/* ------------------ ACTIVAR: MODO OSCURO -------------- */
+
+.switch__btn {
+    background: #635d5d;
+    border-radius: 1000px;
+    border: none;
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    outline: none;
+}
+
+button.switch__btn span {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    display: block;
+    background: none;
+    color: white;
+}
+
+button.switch__btn::after {
+    content: "";
+    display: block;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    background: whitesmoke;
+    top: 0;
+    left: 0;
+    right: unset;
+    border-radius: 100px;
+    transition: .3s ease all;
+    box-shadow: 0px 0px 2px 2px #292828;
+}
+
+button.active {
+    background-color: orange;
+    color: #0f0f0f;
+}
+
+button.active::after {
+    left: unset;
+    right: 0;
+    transition: .3s ease all;
 }
 
 section.movie-list {
   margin-top: 20px;
+  color: #0f0f0f;
 }
+
 
 .movie-card {
   margin-bottom: 20px;
@@ -41,5 +193,117 @@ section.movie-list {
 
 .carousel-inner img {
   max-width: 100%;
-  height: 23.75rem;
+  height: 20rem;
+}
+
+footer {
+    margin-top: 0;
+    background-color: rgb(113,45,249);
+}
+
+@media (min-width: 768px) {
+  .carousel-inner img {
+    height: 55vw;
+  }
+}
+
+
+
+/* -------------- MODO OSCURO --------------- */
+
+body.dark-mode {
+    background-color: #0f0f0f;
+    color: white;
+}
+
+body.dark-mode header {
+    background:#0f0f0f;
+}
+
+body.dark-mode header.header__menu-link {
+    color: white;
+}
+
+body.dark-mode .header__menu-link:hover {
+    color: #0f0f0f;
+    background-color: white;   
+}
+
+body.dark-mode main {
+    background-color: rgb(41, 40, 40);
+}
+
+
+body.dark-mode div.sombre-lista {
+    box-shadow: 0px 0px 2px 2px #9999;
+}
+
+body.dark-mode footer {
+    background-color: #0f0f0f;
+    box-shadow: 0px 0px 2px 2px #9999;
+}
+
+@media (max-width: 780px) {
+
+    .checkbtn {
+        display: block;
+        margin-top: 0.2vh;
+        margin-right: 3vh;
+    }
+
+    .header__nav .checkbtn i {
+        margin-top: 0.1vh;
+    }
+
+    .header__nav #check {
+        margin-top: 0.1vh;
+    }
+
+    header {
+        height: 5rem;
+    }
+
+    .header__menu {
+        position: fixed;
+        width: 100%;
+        height: 65vh;
+        background-color: rgb(113,45,249);
+        top: 4rem;
+        left: -100%;
+        text-align: center;
+        transition: all .5s;
+        display: flex;
+        flex-direction: column;
+        gap: 0.2rem;
+    }
+
+    .header__nav ul li {
+        display: block;
+        margin: 2rem 0;
+        line-height: 30px;
+        color: white;
+
+    }
+
+    .header__nav ul li a {
+        font-size: 20px;
+        color: white;
+
+    }
+
+    .header__nav ul li a:hover {
+        background-color: white;
+    }
+
+    #check:checked ~ ul {
+        left: 0;
+    }
+
+    .header__menu:nth-child(5) .switch__btn {
+        order: 0;
+    }
+
+    body.dark-mode .header__menu {
+        background-color: #0f0f0f;
+    }
 }
