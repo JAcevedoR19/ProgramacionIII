@@ -50,13 +50,19 @@
                         <img v-bind:src="`https://image.tmdb.org/t/p/original/${movie.poster_path}`" class="img-fluid"><br><br>
                     </div>
                     <div class="movie-card-info">
-                        <p class="card-text">{{ movie.overview }}</p>
+                        <p class="card-text">
+                            <strong>Descripción:</strong><br>
+                            {{ movie.overview }}
+                        </p><br>
                         <p class="card-text">
                             <strong>Género: </strong>
                             <ul class="list-unstyled">
                                 <li v-for="genre in movie.genres">  {{ genre.name }}</li>
                             </ul>
-                        </p> <br>
+                        </p>
+                        <p class="card-text">
+                            <strong>Duración: </strong>{{ movie.runtime ? movie.runtime + ' minutos' : 'Duración no disponible' }}
+                        </p><br>
                         <p class="card-text">
                             <strong>Valoración: </strong>{{ movie.averageRating ? movie.averageRating : 'Sin valoración' }}/10
                         </p><br>

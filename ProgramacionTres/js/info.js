@@ -22,6 +22,7 @@ const appDescription = new Vue({
                     this.overview = data.overview;
                     this.poster_path = data.poster_path;
                     this.movie.averageRating = data.vote_average.toFixed(1);
+                    this.movie.runtime = data.runtime;
 
                     const genreIds = data.genre_ids;
                     if (genreIds) {
