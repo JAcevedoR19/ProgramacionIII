@@ -13,9 +13,13 @@ const app = new Vue({
         lista: [],
         carouselImages: [],
         searchTerm: '',
+        filteredMovies: [],
         },
         mounted() {
             this.getMovies();
+        },
+        watch: {
+            searchTerm: 'filterMovies' // Llama a filterMovies cada vez que searchTerm cambie
         },
     methods: {
         async getMovies() {
@@ -33,6 +37,7 @@ const app = new Vue({
             }));
 
             this.lista = data.results;
+            this.filteredMovies = this.lista;
 
             console.log(data);
             
@@ -45,9 +50,14 @@ const app = new Vue({
         },
 
         filterMovies() {
-            this.lista = this.lista.filter(movie => {
-                return movie.title.toLowerCase().includes(this.searchTerm.toLowerCase());
-            });
+            console.log(this.searchTerm);
+            if (this.searchTerm === '') {
+                this.filteredMovies = this.lista;
+            } else {
+                this.filteredMovies = this.lista.filter(movie => {
+                    return movie.title.toLowerCase().includes(this.searchTerm.toLowerCase());
+                });
+            }
         },
 
         openDescription(movie) {

@@ -157,29 +157,36 @@ button.active::after {
 }
 
 section.movie-list {
-  margin-top: 20px;
-  color: #0f0f0f;
+    margin-top: 20px;
+    color: #0f0f0f;
+}
+
+.movie-description {
+    margin-top: 4.5rem;
 }
 
 
 .movie-card {
-  margin-bottom: 20px;
-  border: 1px solid #ddd;
-  padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0px 0px 2px 2px rgb(113,45,249);
+    padding: 20px;
+    border-radius: 20px;
 }
 
-.movie-card h2 {
-  font-size: 24px;
-  margin-bottom: 10px;
+.movie-card-title {
+    font-size: 24px;
+    margin-bottom: 10px;
+    font-weight: 800;
+    color: #0f0f0f;
 }
 
 .movie-card p {
-  margin-bottom: 0;
+    margin-bottom: 0;
 }
 
 .movie-card img {
   width: 100%;
-  height: auto;
+  height: 25rem;
   margin-bottom: 10px;
 }
 

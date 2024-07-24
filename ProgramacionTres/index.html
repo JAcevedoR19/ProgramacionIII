@@ -9,82 +9,85 @@
     <title>Aplicación de Películas | Home</title>
 </head>
     <body>
-        <header id="cabecera">
-            <div class="header__init">
-                <div class="header__icon">
-                    <a class="header__icon-link" href="#">ISTIC MOVIE</a>
-                </div>
-                <nav class="header__nav">
-                    <input type="checkbox" id="check">
-                    <label for="check" class="checkbtn">
-                        <i class="fa-solid fa-bars"></i>
-                    </label>
-                    
-                    <ul class="header__menu">
-                        <li class="header__menu-option">
-                            <a class="header__menu-link" href="#">Películas</a> 
-                        </li>
-                        <li class="header__menu-option">
-                            <a class="header__menu-link" href="favorites.html">Favoritos</a>
-                        </li>
-
-                        <div class="col-md-4 mb-3">
-                            <input type="text" v-model="searchTerm" placeholder="Buscar película" class="form-control" v-on:input="filterMovies">
-                        </div>
-
-                        <li>
-                            <button class="switch__btn" id="switchOscuroBtn">
-                                <span><i class="fa-solid fa-sun"></i></span>
-                                <span><i class="fa-solid fa-moon"></i></i></span>
-                            </button>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-        </header>
-
-        <main id="app">
-            <section class="carrusel-banner">
-                <div id="carouselExampleIndicators" class="carousel slide">
-                    <div class="carousel-indicators">
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        <div id="app">
+            <header id="cabecera">
+                <div class="header__init">
+                    <div class="header__icon">
+                        <a class="header__icon-link" href="#">ISTIC MOVIE</a>
                     </div>
-                    <div class="carousel-inner">
-                        <div v-for="(image, index) in carouselImages" :key="index" class="carousel-item" :class="{ 'active': index === 0 }">
-                            <img :src="image.src" class="d-block w-100 img-fluid" :alt="image.alt">
+                    <nav class="header__nav">
+                        <input type="checkbox" id="check">
+                        <label for="check" class="checkbtn">
+                            <i class="fa-solid fa-bars"></i>
+                        </label>
+                        
+                        <ul class="header__menu">
+                            <li class="header__menu-option">
+                                <a class="header__menu-link" href="#">Películas</a> 
+                            </li>
+                            <li class="header__menu-option">
+                                <a class="header__menu-link" href="favorites.html">Favoritos</a>
+                            </li>
+    
+                            <div class="col-md-4 mb-3">
+                                <input type="text" v-model="searchTerm" placeholder="Buscar película" class="form-control" v-on:keyup.enter="filterMovies" >
+                            </div>
+    
+                            <li>
+                                <button class="switch__btn" id="switchOscuroBtn">
+                                    <span><i class="fa-solid fa-sun"></i></span>
+                                    <span><i class="fa-solid fa-moon"></i></i></span>
+                                </button>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </header>
+    
+            <main>
+                <section class="carrusel-banner">
+                    <div id="carouselExampleIndicators" class="carousel slide">
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                        </div>
+                        <div class="carousel-inner">
+                            <div v-for="(image, index) in carouselImages" :key="index" class="carousel-item" :class="{ 'active': index === 0 }">
+                                <img :src="image.src" class="d-block w-100 img-fluid" :alt="image.alt">
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Anterior</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Siguiente</span>
+                        </button>
+                    </div>
+                </section>
+    
+                <section class="movie-list container mt-5">
+                    <div v-if="completed">
+                        <h1 class="text-center">Lista de Películas</h1>
+                        <div class="row">
+                            <div v-for="movie in lista" :key="movie.id" class="col-6 col-sm-4 col-md-3 col-lg-2 mb-3 sombra-lista">
+                                <button v-on:click="openDescription(movie)" class="w-100" style="padding: 0;">
+                                    <img v-bind:src="`https://image.tmdb.org/t/p/original/${movie.poster_path}`" class="img-fluid" style="padding: 0;">
+                                </button>
+                            </div>
                         </div>
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Anterior</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Siguiente</span>
-                    </button>
-                </div>
-            </section>
-
-            <section class="movie-list container mt-5">
-                <div v-if="completed">
-                    <h1 class="text-center">Lista de Películas</h1>
-                    <div class="row">
-                        <div v-for="movie in lista" :key="movie.id" class="col-6 col-sm-4 col-md-3 col-lg-2 mb-3 sombra-lista">
-                            <button v-on:click="openDescription(movie)" class="w-100" style="padding: 0;">
-                                <img v-bind:src="`https://image.tmdb.org/t/p/original/${movie.poster_path}`" class="img-fluid" style="padding: 0;">
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <section></section>
-        </main>
-
-        <footer class="text-white mb-0 text-center p-2">
-            <p class=" text-center mt-3"> © 2024 Aplicación de Películas | Programación III</p>
-        </footer>
+                </section>
+                <section></section>
+            </main>
+    
+            <footer class="text-white mb-0 text-center p-2">
+                <p class=" text-center mt-3"> © 2024 Aplicación de Películas | Programación III</p>
+            </footer>
+        </div>
+        
 
         <script src="sw.js"></script>
         <script src="./js/data.js"></script>
