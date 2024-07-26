@@ -32,7 +32,7 @@
                     <li>
                         <button class="switch__btn" id="switchOscuroBtn">
                             <span><i class="fa-solid fa-sun"></i></span>
-                            <span><i class="fa-solid fa-moon"></i></i></span>
+                            <span><i class="fa-solid fa-moon"></i></span>
                         </button>
                     </li>
                 </ul>
@@ -41,30 +41,44 @@
     </header>
 
     <main id="appFavorites">
-        <div class="movie-list container mt-5">
-            <div v-if="peliculasFavoritas.length === 0">
-                <p>No hay películas favoritas.</p>
-            </div>
-            <div v-else>
-                <div v-for="(movie, index) in peliculasFavoritas" :key="movie.id">
-                    <div class="movie-card card bg-secondary text-white mb-3">
-                        <div class="card-body">
-                            <h2 class="card-title text-center">{{ movie.title }}</h2><br>
-                            <img v-bind:src="`https://image.tmdb.org/t/p/original/${movie.poster_path}`" class="img-fluid">
-                            <p class="card-text">{{ movie.overview }}</p>
-                            <br>
-                            <button class="btn btn-danger" v-on:click="removeMovie(index)">
-                                <i class="bi bi-trash"></i> Eliminar de favoritos
-                            </button>
+        <section class="favorite-container container">
+            <div class="favorite-movie-list">
+                <div v-if="peliculasFavoritas.length === 0" class="col-12">
+                    <p class="text-center">No hay películas favoritas.</p>
+                </div>
+                <div v-else>
+                    <div v-for="(movie, index) in peliculasFavoritas" :key="movie.id">
+                        <div class="favorite-movie-card text-dark mb-3">
+                            <div class="favorite-card-body">
+                                <h2 class="card-title text-center">
+                                    {{ movie.title }}
+                                </h2>
+                                <br>
+                                <div class="favorite-card-info">
+                                    <div class="favorite-card-img">
+                                        <img v-bind:src="`https://image.tmdb.org/t/p/original/${movie.poster_path}`" class="img-fluid">
+                                    </div>
+                                    <div class="favorite-card-description">
+                                        <p class="card-text">{{ movie.overview }}</p><br>
+                                        <button class="btn btn-danger" v-on:click="removeMovie(index)">
+                                            <i class="bi bi-trash"></i> <strong>Eliminar de favoritos</strong> 
+                                        </button>
+                                    </div> 
+                                </div>                                
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
+    </main>
+    
+    
+        
     </main>
 
     <footer class="text-white mb-0 text-center p-2">
-        <p class=" text-center mt-3"> © 2024 Aplicación de Películas | Programación III</p>
+        <p class="text-center mt-3">© 2024 Aplicación de Películas | Programación III</p>
     </footer>
 
     <script src="sw.js"></script>
