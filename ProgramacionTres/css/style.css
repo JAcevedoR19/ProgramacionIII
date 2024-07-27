@@ -477,8 +477,6 @@ body.dark-mode .search-result-item:hover {
     color: #0f0f0f;
 }
 
-
-
 .favorite-movie-list {
     display: flex;
     flex-wrap: wrap;
@@ -503,4 +501,19 @@ body.dark-mode .favorite-movie-list .movie-card-title {
 body.dark-mode .favorite-movie-list .movie-card-info li {
     background-color: #0f0f0f;
     color: white;
+}
+
+
+/* ALERTAS PERSONALIZADAS */
+
+.alert-container {
+    position: fixed;
+    top: 5rem;
+    right: 20px;
+    width: 300px;
+    z-index: 1050;
+}
+
+.alert {
+    transition: opacity 2s ease-in-out;
 }
